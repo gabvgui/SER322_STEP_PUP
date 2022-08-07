@@ -10,6 +10,37 @@ Lizell Cabalquinto
 
 Video URL: <insert URL here>
 
+Database Structure:
+Packages:
+    UI -> holds logic for interactive menu
+    Database -> handles database src files, driver, ...
+UI
+Middle Layer
+Database
+JDBC connectivity
+
+Instructions for using Step Pup: Doggie Daycare Application
+
+Environment requirements:
+
+
+- Steps for creating the database: 
+
+
+- Steps for executing (compile/deploy/run) the application:
+
+
+- Misc notes:
+
+
+Individual contributions:
+
+Andrea Schoonover - 
+Sergei Manukian - 
+Gabrielle Gui - 
+Lizell Cabalquinto - 
+
+
 SQL Files:
 
 STEP_PUP_GROUP_9_create.sql 
@@ -30,3 +61,4 @@ STEP_PUP_GROUP_9_select.sql
         - Employees, dogs, starting points, and cost of routes
         - Dogs sorted by assigned
         - Customers total cost
+        
