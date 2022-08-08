@@ -22,6 +22,7 @@ public class Main {
             Connection connection = DriverManager.getConnection(url, user, pass);
             System.out.println("Connected");
             scan.close();
+            Menu obj = new Menu();
         }
         catch (SQLException e)
         {
