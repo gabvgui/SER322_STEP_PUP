@@ -4,13 +4,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.BoxLayout;
+import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 
 public class Menu extends JFrame {
     public Menu() {
         JButton addEntry = new JButton("Add Entry");
-        JLabel label = new JLabel("Main Menu", SwingConstants.CENTER);
         JPanel menu = new JPanel();
         
         /*
@@ -26,7 +26,6 @@ public class Menu extends JFrame {
         
         //Panel Layout
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-        menu.add(label);
         menu.add(addEntry);
         
         //Frame Information
