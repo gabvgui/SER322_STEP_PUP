@@ -100,6 +100,8 @@ public class Main {
             ps.setString(1, id);
             ps.setString(2, first);
             ps.setString(3, last);
+            ps.executeUpdate();
+            ps.close();
         }
         catch(SQLException e) {
             System.out.println("Oops, something went wrong");
@@ -117,6 +119,8 @@ public class Main {
             ps.setString(4, start);
             ps.setString(5, end);
             ps.setInt(6, cost);
+            ps.executeUpdate();
+            ps.close();
         }
         catch(SQLException e) {
             System.out.println("Oops, something went wrong");

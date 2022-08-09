@@ -200,6 +200,8 @@ public class NewEntry extends JFrame{
      */
     private void addRoute() {
         form = new JPanel();
+        JLabel dogid = new JLabel("Dog ID:");
+        JLabel empid = new JLabel("Employee ID:");
         JComboBox Dog = new JComboBox(dogID.toArray());
         JComboBox Emp = new JComboBox(empID.toArray());
         JTextField Start = new JTextField("Start");
@@ -217,7 +219,9 @@ public class NewEntry extends JFrame{
                 success();
             }
         });
+        form.add(dogid);
         form.add(Dog);
+        form.add(empid);
         form.add(Emp);
         form.add(Start);
         form.add(End);
