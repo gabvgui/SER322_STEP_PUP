@@ -3,14 +3,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.*;
+
+import net.proteanit.sql.DbUtils;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Main {
 
     private static Connection connection;
     private static PreparedStatement ps;
     private static ResultSet rs;
+    private static ResultSetMetaData rsmd;
+    private static DefaultTableModel dm;
     
     public static void main(String[] args) {
         //url = "jdbc:mysql://localhost:3306/Group9";
@@ -185,6 +196,21 @@ public class Main {
             System.out.println("Oops, something went wrong!");
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    /*
+     * Displays Customer table
+     */
+    public static void showCustomers() {
+        try{
+            ps = connection.prepareStatement("SELECT * FROM CUSTOMER");
+            rs = ps.executeQuery();
+            Update.scrollPane.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+      
+        catch(SQLException e) {
+            e.printStackTrace();
         }
     }
     
