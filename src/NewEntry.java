@@ -43,7 +43,7 @@ public class NewEntry extends JFrame{
             }
         });
         
-        enter = new JButton("Enter");
+        enter = new JButton("Save");
         
         
         /*
@@ -211,8 +211,8 @@ public class NewEntry extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 int dog = (int) Dog.getSelectedItem();
                 int emp = (int) Emp.getSelectedItem();
-                String start = Start.getSelectedText();
-                String end = End.getSelectedText();
+                String start = Start.getText();
+                String end = End.getText();
                 int cost = Integer.parseInt(Cost.getText());
                 Main.newRoute(dog, null, emp, start, end, cost);
                 frame.dispose();

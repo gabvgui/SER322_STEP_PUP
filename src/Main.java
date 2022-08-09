@@ -1,3 +1,5 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,9 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 
 import net.proteanit.sql.DbUtils;
 
@@ -22,6 +27,7 @@ public class Main {
     private static ResultSet rs;
     private static ResultSetMetaData rsmd;
     private static DefaultTableModel dm;
+  
     
     public static void main(String[] args) {
         //url = "jdbc:mysql://localhost:3306/Group9";
@@ -204,14 +210,142 @@ public class Main {
      */
     public static void showCustomers() {
         try{
+            String[] cust = {"Email", "First Name", "Middle Initial", "Last Name", "Credit Card", "Address"};
             ps = connection.prepareStatement("SELECT * FROM CUSTOMER");
             rs = ps.executeQuery();
             Update.scrollPane.setModel(DbUtils.resultSetToTableModel(rs));
         }
-      
         catch(SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    /*
+     * Displays Dog table
+     */
+    public static void showDogs() {
+        try {
+            ps = connection.prepareStatement("SELECT * FROM DOG");
+            rs = ps.executeQuery();
+            Update.scrollPane.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+     * Displays Employee table
+     */
+    public static void showEmployees() {
+        try {
+            ps = connection.prepareStatement("SELECT * FROM EMPLOYEE");
+            rs = ps.executeQuery();
+            Update.scrollPane.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+     * Displays Manager table
+     */
+    public static void showManagers() {
+        try {
+            ps = connection.prepareStatement("SELECT * FROM MANAGER");
+            rs = ps.executeQuery();
+            Update.scrollPane.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+     * Displays Route table
+     */
+    public static void showRoutes() {
+        try {
+            ps = connection.prepareStatement("SELECT * FROM ROUTE");
+            rs = ps.executeQuery();
+            Update.scrollPane.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+     * Updates Customer table
+     */
+    public static void updateCustomer(String email, String first, char middle, String last, String cc, String address) {
+        try {
+            ps = connection.prepareStatement("update CUSTOMER set FIRST_NAME=?, MIDDLE_INITIAL=?, LAST_NAME=?, "
+                    + "CC_NUMBER=?, ADDRESS=? where EMAIL=?");
+            ps.setString(1, first);
+            ps.setString(2, String.valueOf(middle));
+            ps.setString(3, last);
+            ps.setString(4, cc);
+            ps.setString(5, address);
+            ps.setString(6, email);
+            ps.executeUpdate();
+            success();
+            
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong!");
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+     * Updates Dog table
+     */
+    public static void updateDog(String owner, int id, String breed, String name, int age) {
+        
+    }
+    
+    /*
+     * Updates Employee table
+     */
+    public static void updateEmployee(int id, String first, String last, int age, String address) {
+        
+    }
+    
+    /*
+     * Updates Manager table
+     */
+    public static void updateManager(int id, String first, String last) {
+        
+    }
+    
+    /*
+     * Updates Route table
+     */
+    public static void updateRoute(int dog, int id, int emp, String start, String end, int cost) {
+        
+    }
+    
+    /*
+     * Displays success message
+     */
+    private static void success() {
+        JFrame added = new JFrame();
+        added.setTitle("Successful");
+        JLabel successfullyAdded = new JLabel("Successfully Updated!");
+        added.add(successfullyAdded);
+        added.setSize(200,200);
+        added.setVisible(true);
+        added.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                e.getWindow().dispose();
+            }
+        });
+        
     }
     
     
