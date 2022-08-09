@@ -2,12 +2,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    
+
     private static Connection connection;
     private static PreparedStatement ps;
+    private static ResultSet rs;
     
     public static void main(String[] args) {
         //url = "jdbc:mysql://localhost:3306/Group9";
@@ -36,7 +39,6 @@ public class Main {
     }
      
     public static void newCustomer(String email, String first, char middle, String last, String cc, String address) {
-        System.out.println("working here");
         try { 
             ps = connection.prepareStatement("insert into CUSTOMER ( EMAIL , FIRST_NAME , MIDDLE_INITIAL , "
                 + " LAST_NAME , CC_NUMBER , ADDRESS )values(?,?,?,?,?,?)");
@@ -55,16 +57,133 @@ public class Main {
         }
     }
     
-    public static void newDog() {
+    public static void newDog(String own, String id, String breed, String name, int age) {
+        try {
+            ps = connection.prepareStatement("insert into DOG ( OWNER_EMAIL, ID, BREED, DOG_NAME, AGE "
+                    + ")values(?,?,?,?,?)");
+            ps.setString(1, own);
+            ps.setString(2, id);
+            ps.setString(3, breed);
+            ps.setString(4, name);
+            ps.setInt(5, age);
+            ps.executeUpdate();
+            ps.close();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong!");
+            e.printStackTrace();
+        }
         
     }
     
-    public static void newManager() {
-        
+    public static void newEmployee(String id, String first, String last, int age, String address) {
+        try {
+            ps = connection.prepareStatement("insert into EMPLOYEE ( EMPLOYEE_ID, FIRST_NAME, LAST_NAME, AGE, ADDRESS "
+                    + ")values(?,?,?,?,?)");
+            ps.setString(1, id);
+            ps.setString(2, first);
+            ps.setString(3, last);
+            ps.setInt(4, age);
+            ps.setString(5, address);
+            ps.executeUpdate();
+            ps.close();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
     }
     
-    public static void newRoute() {
-        
+    public static void newManager(String id, String first, String last) {
+        try {
+            ps = connection.prepareStatement("insert into MANAGER ( EMPLOYEE_ID, FIRST_NAME, LAST_NAME )values(?,?,?)");
+            ps.setString(1, id);
+            ps.setString(2, first);
+            ps.setString(3, last);
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
     }
+    
+    public static void newRoute(int dog, String id, int emp, String start, String end, int cost) {
+        try {
+            ps = connection.prepareStatement("insert into ROUTE ( DOG_ID, ROUTE_ID, EMPLOYEE_ID,"
+                    + "START_POINT, END_POINT, COST )values(?,?,?,?,?,?)");
+            ps.setInt(1, dog);
+            ps.setString(2, id);
+            ps.setInt(3, emp);
+            ps.setString(4, start);
+            ps.setString(5, end);
+            ps.setInt(6, cost);
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+     * Gets customer emails
+     */
+    public static ArrayList<String> getCustomers() {
+        try {
+           ps = connection.prepareStatement("SELECT EMAIL FROM CUSTOMER"); 
+           rs = ps.executeQuery();
+           ArrayList<String> arr = new ArrayList<String>();
+           while(rs.next()) {
+               arr.add(rs.getString("EMAIL"));
+           }
+           return arr;
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong!");
+            e.printStackTrace(); 
+            return null;
+        }
+    }
+    
+    /*
+     * Gets Dog IDs
+     */
+    public static ArrayList<Integer> getDogID() {
+        try {
+            ps = connection.prepareStatement("SELECT ID FROM DOG");
+            rs = ps.executeQuery();
+            ArrayList<Integer> arr = new ArrayList<Integer>();
+            while(rs.next()) {
+                arr.add(rs.getInt("ID"));
+            }
+            return arr;
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong!");
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    /*
+     * Gets Employee IDs
+     */
+    public static ArrayList<Integer> getEmployeeID() {
+        try {
+            ps = connection.prepareStatement("SELECT EMPLOYEE_ID FROM EMPLOYEE");
+            rs = ps.executeQuery();
+            ArrayList<Integer> arr = new ArrayList<Integer>();
+            while(rs.next()) {
+                arr.add(rs.getInt("EMPLOYEE_ID"));
+            }
+            return arr;
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong!");
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
          
 }

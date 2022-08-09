@@ -8,9 +8,11 @@ import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 
-public class Menu extends JFrame {
-    public Menu() {
+public class Menu extends JFrame{
+    public Menu(){
         JButton addEntry = new JButton("Add Entry");
+        //JButton updateEntry = new JButton("Update Entry");
+        //JButton deleteEntry = new JButton("Delete Entry");
         JPanel menu = new JPanel();
         
         /*
@@ -22,6 +24,11 @@ public class Menu extends JFrame {
                setVisible(false);
            }
         });
+        /*updateEntry.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               new Update();
+           }
+        });*/
         
         
         //Panel Layout
