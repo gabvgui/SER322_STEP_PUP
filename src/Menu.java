@@ -11,8 +11,8 @@ import java.awt.event.*;
 public class Menu extends JFrame{
     public Menu(){
         JButton addEntry = new JButton("Add Entry");
-        JButton updateEntry = new JButton("Update Entry");
-        //JButton deleteEntry = new JButton("Delete Entry");
+        JButton updateEntry = new JButton("Update/Delete Entry");
+        // JButton deleteEntry = new JButton("Delete Entry");
         JPanel menu = new JPanel();
         
         /*
@@ -32,10 +32,12 @@ public class Menu extends JFrame{
         });
         
         
+        
         //Panel Layout
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
         menu.add(addEntry);
         menu.add(updateEntry);
+        // menu.add(deleteEntry);
         
         //Frame Information
         add(menu);
