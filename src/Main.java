@@ -27,6 +27,9 @@ public class Main {
     private static ResultSet rs;
     private static ResultSetMetaData rsmd;
     private static DefaultTableModel dm;
+    private static String url;
+    private static String user;
+    private static String pass;
   
     
     public static void main(String[] args) {
@@ -38,11 +41,11 @@ public class Main {
         {
             scan = new Scanner(System.in);
             System.out.println("Enter URL:");
-            String url = scan.nextLine();
+            url = scan.nextLine();
             System.out.println("Enter Username:");
-            String user = scan.nextLine();
+            user = scan.nextLine();
             System.out.println("Enter Password:");
-            String pass = scan.nextLine();
+            pass = scan.nextLine();
             connection = DriverManager.getConnection(url, user, pass);
             System.out.println("Connected");
             scan.close();
@@ -144,7 +147,19 @@ public class Main {
             e.printStackTrace();
         }
     }
-    
+
+    public static String getUrl() {
+        return url;
+    }
+
+    public static String getPass() {
+        return pass;
+    }
+
+    public static String getUser() {
+        return user;
+    }
+
     /*
      * Gets customer emails
      */
