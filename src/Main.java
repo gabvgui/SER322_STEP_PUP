@@ -303,28 +303,77 @@ public class Main {
      * Updates Dog table
      */
     public static void updateDog(String owner, int id, String breed, String name, int age) {
-        
+        try {
+            ps = connection.prepareStatement("update DOG set BREED=?, DOG_NAME=?, AGE=?  where ID=?");
+            ps.setString(1, breed);
+            ps.setString(2, name);
+            ps.setInt(3, age);
+            ps.setInt(4, id);
+            ps.executeUpdate();
+            success();
+            
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong!");
+            e.printStackTrace();
+        }
     }
     
     /*
      * Updates Employee table
      */
     public static void updateEmployee(int id, String first, String last, int age, String address) {
-        
+        try {
+            ps = connection.prepareStatement("update EMPLOYEE set FIRST_NAME=?, LAST_NAME=?, AGE=?, ADDRESS=? where EMPLOYEE_ID=?");
+            ps.setString(1, first);
+            ps.setString(2, last);
+            ps.setInt(3, age);
+            ps.setString(4, address);
+            ps.setInt(5, id);
+            ps.executeUpdate();
+            ps.close();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
     }
     
     /*
      * Updates Manager table
      */
     public static void updateManager(int id, String first, String last) {
-        
+        try {
+            ps = connection.prepareStatement("update MANAGER set FIRST_NAME=?, LAST_NAME=? where EMPLOYEE_ID=?");
+            ps.setString(1, first);
+            ps.setString(2, last);
+            ps.setInt(3, id);
+            ps.executeUpdate();
+            ps.close();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
     }
     
     /*
      * Updates Route table
      */
     public static void updateRoute(int dog, int id, int emp, String start, String end, int cost) {
-        
+        try {
+            ps = connection.prepareStatement("update ROUTE set START_POINT=?, END_POINT=?, COST=? where ROUTE_ID=?");
+            ps.setString(1, start);
+            ps.setString(2, end);
+            ps.setInt(3, cost);
+            ps.setInt(4, id);
+            ps.executeUpdate();
+            ps.close();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
     }
     
     /*

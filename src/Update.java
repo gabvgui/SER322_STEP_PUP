@@ -107,6 +107,7 @@ public class Update {
             main.showDogs();
             form.add(update);
             frame.add(form);
+            frame.setVisible(true);
             update.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e) {
                     scrollPane.setVisible(true);
@@ -119,6 +120,7 @@ public class Update {
             main.showEmployees();
             form.add(update);
             frame.add(form);
+            frame.setVisible(true);
             update.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e) {
                     scrollPane.setVisible(true);
@@ -131,6 +133,7 @@ public class Update {
             main.showManagers();
             form.add(update);
             frame.add(form);
+            frame.setVisible(true);
             update.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e) {
                     scrollPane.setVisible(true);
@@ -143,6 +146,7 @@ public class Update {
             main.showRoutes();
             form.add(update);
             frame.add(form);
+            frame.setVisible(true);
             update.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e) {
                     scrollPane.setVisible(true);
@@ -176,6 +180,7 @@ public class Update {
                 updateFrame.dispose();
                 Main.updateCustomer(email, first, middle, last, ccNumber, address);
                 frame.setVisible(true);
+                main.showCustomers();
             }
         });
         updateFrame.addWindowListener(new WindowAdapter()
@@ -194,6 +199,9 @@ public class Update {
         updateForm.add(CCNumber);
         updateForm.add(Address);
         updateForm.add(submit);
+        updateForm.setLayout(
+                new BoxLayout(updateForm, BoxLayout.Y_AXIS)
+            );
         updateFrame.add(updateForm);
         updateFrame.setVisible(true);
     }
@@ -204,11 +212,11 @@ public class Update {
         updateFrame.setSize(400,400);
         updateFrame.setTitle("Update Dog");
         int i = scrollPane.getSelectedRow();
-        JLabel Owner = new JLabel((String) scrollPane.getValueAt(i, 0));
-        JLabel ID = new JLabel((String) scrollPane.getValueAt(i, 1));
+        JLabel Owner = new JLabel((scrollPane.getValueAt(i, 0)).toString());
+        JLabel ID = new JLabel((scrollPane.getValueAt(i, 1)).toString());
         JTextField Breed = new JTextField((String) scrollPane.getValueAt(i, 2));
         JTextField Name = new JTextField((String) scrollPane.getValueAt(i, 3));
-        JTextField Age = new JTextField((String) scrollPane.getValueAt(i, 4));
+        JTextField Age = new JTextField((scrollPane.getValueAt(i, 4)).toString());
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String owner = Owner.getText();
@@ -219,6 +227,7 @@ public class Update {
                 main.updateDog(owner, id, breed, name, age);
                 updateFrame.dispose();
                 frame.setVisible(true);
+                main.showDogs();
             }
         });
         updateFrame.addWindowListener(new WindowAdapter()
@@ -236,7 +245,9 @@ public class Update {
         updateForm.add(Name);
         updateForm.add(Age);
         updateForm.add(submit);
-        updateForm.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
+        updateForm.setLayout(
+                new BoxLayout(updateForm, BoxLayout.Y_AXIS)
+            );
         updateFrame.add(updateForm);
         updateFrame.setVisible(true);
     }
@@ -247,10 +258,10 @@ public class Update {
         updateFrame.setSize(400,400);
         updateFrame.setTitle("Update Employee");
         int i = scrollPane.getSelectedRow();
-        JLabel ID = new JLabel((String) scrollPane.getValueAt(i, 0));
+        JLabel ID = new JLabel((scrollPane.getValueAt(i, 0)).toString());
         JTextField First = new JTextField((String) scrollPane.getValueAt(i, 1));
         JTextField Last = new JTextField((String) scrollPane.getValueAt(i, 2));
-        JTextField Age = new JTextField((String) scrollPane.getValueAt(i, 3));
+        JTextField Age = new JTextField((scrollPane.getValueAt(i, 3)).toString());
         JTextField Address = new JTextField((String) scrollPane.getValueAt(i, 4));
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -262,6 +273,7 @@ public class Update {
                 main.updateEmployee(id, first, last, age, address);
                 updateFrame.dispose();
                 frame.setVisible(true);
+                main.showEmployees();
             }
         });
         updateFrame.addWindowListener(new WindowAdapter()
@@ -279,8 +291,10 @@ public class Update {
         updateForm.add(Age);
         updateForm.add(Address);
         updateForm.add(submit);
-        updateForm.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
-        updateFrame.add(form);
+        updateForm.setLayout(
+                new BoxLayout(updateForm, BoxLayout.Y_AXIS)
+            );
+        updateFrame.add(updateForm);
         updateFrame.setVisible(true);
     }
     
@@ -290,7 +304,7 @@ public class Update {
         updateFrame.setSize(400,400);
         updateFrame.setTitle("Update Manager");
         int i = scrollPane.getSelectedRow();
-        JLabel ID = new JLabel((String) scrollPane.getValueAt(i, 0));
+        JLabel ID = new JLabel((scrollPane.getValueAt(i, 0)).toString());
         JTextField First = new JTextField((String) scrollPane.getValueAt(i, 1));
         JTextField Last = new JTextField((String) scrollPane.getValueAt(i, 2));
         submit.addActionListener(new ActionListener() {
@@ -301,6 +315,7 @@ public class Update {
                 main.updateManager(id, first, last);
                 updateFrame.dispose();
                 frame.setVisible(true);
+                main.showManagers();
             }
         });
         updateFrame.addWindowListener(new WindowAdapter()
@@ -316,8 +331,10 @@ public class Update {
         updateForm.add(First);
         updateForm.add(Last);
         updateForm.add(submit);
-        updateForm.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
-        updateFrame.add(form);
+        updateForm.setLayout(
+                new BoxLayout(updateForm, BoxLayout.Y_AXIS)
+            );
+        updateFrame.add(updateForm);
         updateFrame.setVisible(true);
     }
     
@@ -327,12 +344,12 @@ public class Update {
         updateFrame.setSize(400,400);
         updateFrame.setTitle("Update Route");
         int i = scrollPane.getSelectedRow();
-        JLabel Dog = new JLabel((String) scrollPane.getValueAt(i, 0));
-        JLabel Emp = new JLabel((String) scrollPane.getValueAt(i, 1));
-        JLabel ID = new JLabel((String) scrollPane.getValueAt(i, 2));
+        JLabel Dog = new JLabel((scrollPane.getValueAt(i, 0)).toString());
+        JLabel Emp = new JLabel((scrollPane.getValueAt(i, 1)).toString());
+        JLabel ID = new JLabel((scrollPane.getValueAt(i, 2)).toString());
         JTextField Start = new JTextField((String) scrollPane.getValueAt(i, 3));
         JTextField End = new JTextField((String) scrollPane.getValueAt(i, 4));
-        JTextField Cost = new JTextField((String) scrollPane.getValueAt(i, 5));
+        JTextField Cost = new JTextField((scrollPane.getValueAt(i, 5)).toString());
         submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int dog = Integer.parseInt(Dog.getText());
@@ -344,6 +361,7 @@ public class Update {
                 Main.updateRoute(dog, id, emp, start, end, cost);
                 updateFrame.dispose();
                 frame.setVisible(true);
+                main.showRoutes();
             }
         });
         updateFrame.addWindowListener(new WindowAdapter()
@@ -362,8 +380,10 @@ public class Update {
         updateForm.add(End);
         updateForm.add(Cost);
         updateForm.add(submit);
-        updateForm.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
-        updateFrame.add(form);
+        updateForm.setLayout(
+                new BoxLayout(updateForm, BoxLayout.Y_AXIS)
+            );
+        updateFrame.add(updateForm);
         updateFrame.setVisible(true);
     }
      
