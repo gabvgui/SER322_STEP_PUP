@@ -111,8 +111,8 @@ public class Update {
                 public void actionPerformed(ActionEvent e) {
                     scrollPane.setVisible(true);
                     String email = (String) scrollPane.getValueAt(scrollPane.getSelectedRow(), 0);
-                    Main.deleteCustomer(email);
-                    //showTable("customer");
+                    main.deleteCustomer(email);
+                    main.showCustomers();
                 }
             });
         }
@@ -134,7 +134,8 @@ public class Update {
                     scrollPane.setVisible(true);
                     int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 1);
                     System.out.println("Selected id: " + id);
-                    Main.deleteDog(id);
+                    main.deleteDog(id);
+                    main.showDogs();
                 }
             });
         }
@@ -156,7 +157,8 @@ public class Update {
                     scrollPane.setVisible(true);
                     int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 0);
                     System.out.println("Selected id: " + id);
-                    Main.deleteEmployee(id);
+                    main.deleteEmployee(id);
+                    main.showEmployees();
                 }
             });
         }
@@ -178,7 +180,8 @@ public class Update {
                     scrollPane.setVisible(true);
                     int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 0);
                     System.out.println("Selected id: " + id);
-                    Main.deleteManager(id);
+                    main.deleteManager(id);
+                    main.showManagers();
                 }
             });
         }
@@ -200,7 +203,8 @@ public class Update {
                     scrollPane.setVisible(true);
                     int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 1);
                     System.out.println("Selected id: " + id);
-                    Main.deleteRoute(id);
+                    main.deleteRoute(id);
+                    main.showRoutes();
                 }
             });
         }
