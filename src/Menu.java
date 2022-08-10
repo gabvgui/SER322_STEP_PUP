@@ -12,8 +12,9 @@ import java.sql.SQLException;
 public class Menu extends JFrame{
     public Menu(){
         JButton addEntry = new JButton("Add Entry");
-        JButton updateEntry = new JButton("Update Entry");
+
         JButton query = new JButton("Query");
+        JButton updateEntry = new JButton("Update/Delete Entry");
         JPanel menu = new JPanel();
         
         /*
@@ -41,6 +42,7 @@ public class Menu extends JFrame{
                setVisible(false);
            }
         });
+        
         
         
         //Panel Layout

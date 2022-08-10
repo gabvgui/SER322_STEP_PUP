@@ -391,6 +391,73 @@ public class Main {
         }
     }
     
+    public static void deleteCustomer(String email) {
+        try {
+            ps = connection.prepareStatement("DELETE FROM CUSTOMER where EMAIL=?");
+            ps.setString(1, email);
+            ps.executeUpdate();
+            ps.close();
+            successDelete();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
+    }
+    
+    public static void deleteDog(int id) {
+        try {
+            ps = connection.prepareStatement("DELETE FROM DOG where ID=?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            successDelete();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
+    }
+    public static void deleteEmployee(int emp_id) {
+        try {
+            ps = connection.prepareStatement("DELETE FROM EMPLOYEE where EMPLOYEE_ID=?");
+            ps.setInt(1, emp_id);
+            ps.executeUpdate();
+            ps.close();
+            successDelete();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
+    }
+    public static void deleteManager(int emp_id) {
+        try {
+            ps = connection.prepareStatement("DELETE FROM MANAGER where EMPLOYEE_ID=?");
+            ps.setInt(1, emp_id);
+            ps.executeUpdate();
+            ps.close();
+            successDelete();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
+    }
+    public static void deleteRoute(int route_id) {
+        try {
+            ps = connection.prepareStatement("DELETE FROM ROUTE where ROUTE_ID=?");
+            ps.setInt(1, route_id);
+            ps.executeUpdate();
+            ps.close();
+            successDelete();
+        }
+        catch(SQLException e) {
+            System.out.println("Oops, something went wrong");
+            e.printStackTrace();
+        }
+    }
+    
     /*
      * Displays success message
      */
@@ -411,6 +478,25 @@ public class Main {
         });
         
     }
+    
+    private static void successDelete() {
+        JFrame added = new JFrame();
+        added.setTitle("Delete Successful");
+        JLabel successfullyAdded = new JLabel("Successfully Deleted!");
+        added.add(successfullyAdded);
+        added.setSize(200,200);
+        added.setVisible(true);
+        added.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                e.getWindow().dispose();
+            }
+        });
+        
+    }
+   
     
     
          

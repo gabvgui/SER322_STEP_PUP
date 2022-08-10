@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -24,6 +25,7 @@ public class Update {
     private static JPanel form;
     private static JPanel updateForm;
     private static JButton update;
+    private static JButton delete;
     private static JButton submit;
     public static JTable scrollPane = new JTable();
     private static Main main = new Main();
@@ -57,6 +59,7 @@ public class Update {
         
         //update button
         update = new JButton("Update");
+        delete = new JButton("Delete");
         submit = new JButton("Submit");
         
         //scrollPane.setBounds(10, 64, 366, 107);
@@ -90,9 +93,11 @@ public class Update {
     }
     
     private static void showTable(String choice) {
+        DefaultTableModel tableModel = (DefaultTableModel) scrollPane.getModel();
         if(choice.equals("Customer")) {
             main.showCustomers();
             form.add(update);
+            form.add(delete);
             frame.add(form);
             frame.setVisible(true);
             update.addActionListener(new ActionListener(){
@@ -102,10 +107,19 @@ public class Update {
                     updateCustomer();
                 }
             });
+            delete.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    scrollPane.setVisible(true);
+                    String email = (String) scrollPane.getValueAt(scrollPane.getSelectedRow(), 0);
+                    main.deleteCustomer(email);
+                    main.showCustomers();
+                }
+            });
         }
         else if(choice.equals("Dog")) {
             main.showDogs();
             form.add(update);
+            form.add(delete);
             frame.add(form);
             frame.setVisible(true);
             update.addActionListener(new ActionListener(){
@@ -115,10 +129,20 @@ public class Update {
                     updateDog();
                 }
             });
+            delete.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    scrollPane.setVisible(true);
+                    int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 1);
+                    System.out.println("Selected id: " + id);
+                    main.deleteDog(id);
+                    main.showDogs();
+                }
+            });
         }
         else if(choice.equals("Employee")) {
             main.showEmployees();
             form.add(update);
+            form.add(delete);
             frame.add(form);
             frame.setVisible(true);
             update.addActionListener(new ActionListener(){
@@ -128,10 +152,20 @@ public class Update {
                     updateEmployee();
                 }
             });
+            delete.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    scrollPane.setVisible(true);
+                    int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 0);
+                    System.out.println("Selected id: " + id);
+                    main.deleteEmployee(id);
+                    main.showEmployees();
+                }
+            });
         }
         else if(choice.equals("Manager")) {
             main.showManagers();
             form.add(update);
+            form.add(delete);
             frame.add(form);
             frame.setVisible(true);
             update.addActionListener(new ActionListener(){
@@ -141,10 +175,20 @@ public class Update {
                     updateManager();
                 }
             });
+            delete.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    scrollPane.setVisible(true);
+                    int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 0);
+                    System.out.println("Selected id: " + id);
+                    main.deleteManager(id);
+                    main.showManagers();
+                }
+            });
         }
         else {
             main.showRoutes();
             form.add(update);
+            form.add(delete);
             frame.add(form);
             frame.setVisible(true);
             update.addActionListener(new ActionListener(){
@@ -154,7 +198,18 @@ public class Update {
                     updateRoute();
                 }
             });
+            delete.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e) {
+                    scrollPane.setVisible(true);
+                    int id = (int) scrollPane.getValueAt(scrollPane.getSelectedRow(), 1);
+                    System.out.println("Selected id: " + id);
+                    main.deleteRoute(id);
+                    main.showRoutes();
+                }
+            });
         }
+        
+        tableModel.fireTableDataChanged();
     }
     
     private static void updateCustomer() {
