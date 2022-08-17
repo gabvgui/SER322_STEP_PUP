@@ -8,7 +8,7 @@ Sergei Manukian
 Gabrielle Gui
 Lizell Cabalquinto
 
-Video URL: <insert URL here>
+Video URL: [a link](https://youtu.be/YgtEv2Lx4pU)
 
 Database Structure:
 Packages:
